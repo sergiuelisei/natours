@@ -16,6 +16,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
+// Start expressap
 const app = express();
 
 app.set('view engine', 'pug');
@@ -23,8 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // GLOBAL MIDDLEWARES
 
-// getting the data from static files
-
+// getting the data from static file
 // app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -87,32 +87,6 @@ app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl}`, 404));
 });
 
-// by specifying 4 paramaters express automatically knows this is
-// a global error handling middleware
 app.use(globalErrorHandler);
 
 module.exports = app;
-
-//
-//
-//app.use((req, res, next) => {
-//   console.log('hello from the middleware');
-//   next();
-// });
-//
-//
-//
-//
-//
-//
-// app.get('/', (req, res) => {
-//   res
-//     .status(200)
-//     .json({ message: 'Hello from the server side!', app: 'natours' });
-// });
-
-// app.post('/', (req, res) => {
-//   res.send('you can post to this endpoint...');
-// });
-
-//using a middleware  ~~  mounting a router
